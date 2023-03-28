@@ -1,13 +1,22 @@
 :root {
     --large-font-size: 1.2rem;
 
-    font-family: sans-serif;
+    --primary-green: rgb(72, 200, 209);
+    --primary-green-hover: rgb(72, 200, 209, 0.8);
+    --secondary-green: rgb(127, 255, 212);
+    --secondary-green-hover: rgb(145, 189, 174);
+
+    --dialog-background: rgba(0, 0, 0, 0.5);
+    --dialog-content-background: rgb(184, 209, 72);
+}
+
+html {
     background-color: antiquewhite;
-    font-size: var(--large-font-size);
-    font-family: sans-serif;
 }
 
 * {
+    font-size: var(--large-font-size);
+    font-family: sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -19,12 +28,12 @@ button, input, .todo {
 }
 
 button {
-    background-color: rgb(72, 200, 209);
+    background-color: var(--primary-green);
     cursor: pointer;
 }
 
 button:hover {
-    background-color: rgb(72, 200, 209, 0.8);
+    background-color: var(--primary-green-hover);
 }
 
 .rounded {
@@ -34,7 +43,6 @@ button:hover {
 
 input {
     width: 100%;
-    font-size: var(--large-font-size);
 }
 
 input:focus {
@@ -66,7 +74,6 @@ main > div {
 }
 
 .list-select {
-    font-size: var(--large-font-size);
     border: none;
     padding: 0.5rem 1rem;
     appearance: none;
@@ -87,9 +94,8 @@ main > div {
 
 .select-container::after {
     position: absolute;
-    top: 45%;
+    top: 50%;
     right: 0.5rem;
-    font-size: var(--large-font-size);
     content: "▼";
 }
 
@@ -122,12 +128,12 @@ main > div {
 
 .todo {
     cursor: pointer;
-    background-color: aquamarine;
+    background-color: var(--secondary-green);
     position: relative;
 }
 
 .todo:hover {
-    background-color: rgb(145, 189, 174);
+    background-color: var(--secondary-green-hover);
 }
 
 .todo > button {
@@ -143,7 +149,7 @@ main > div {
 }
 
 .done {
-    background-color: rgb(145, 189, 174);
+    background-color: var(--secondary-green-hover);
 }
 
 .done > p:first-of-type {
@@ -167,7 +173,7 @@ dialog {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0,0,0,0.5);
+    background-color: var(--dialog-background);
     justify-content: center;
     align-items: center;
     z-index: 1;
@@ -187,7 +193,7 @@ dialog > div:first-of-type {
     z-index: 1;
     justify-content: center;
     align-items: center;
-    background-color: rgb(184, 209, 72);
+    background-color: var(--dialog-content-background);
     border-radius: 0.5rem;
     padding: 1rem;
 }
