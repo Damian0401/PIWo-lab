@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <title>ToDo list</title>
+</head>
+
+<body>
+    <main>
+        <div class="select-container">
+            <label for="list-select">Select list:</label>
+            <select id="list-select" class="list-select" onchange="selectList()">
+                <option value="home">Home</option>
+                <option value="work">Work</option>
+                <option value="university">University</option>
+            </select>
+        </div>
+        <div class="add-container rounded">
+            <input id="todo-input" type="text" placeholder="Enter your todo text here...">
+            <button class="add-button" onclick="addElement()">
+                Add
+            </button>
+        </div>
+        <input id="search-input" type="text" class="search-input rounded" placeholder="Enter search text here...">
+        <div class="case-sensitive-container">
+            <input id="case-sensitive" type="checkbox" onclick="searchTodo()">
+            <label for="case-sensitive">Case sensitive</label>
+        </div>
+        <div id="todo-list" class="todo-list rounded"></div>
+    </main>
+    <dialog id="delete-dialog">
+        <div>
+            <div class="dialog-container">
+                <div class="dialog-header">
+                    <h2>Are you sure you want to delete this item?</h2>
+                </div>
+                <div class="dialog-body">
+                    <button id="confirm-button" class="rounded">
+                        Yes
+                    </button>
+                    <button id="cancel-button" class="rounded" onclick="closeDialog()">
+                        No
+                    </button>
+                </div>
+            </div>
+        </div>
+    </dialog>
+    <script src="./script.js"></script>
+</body>
+
+</html>
