@@ -111,7 +111,7 @@ const searchTodo = () => {
             text = text.toLowerCase();
         }
         if (text.includes(searchValue)) {
-            todo.style.display = 'flex';
+            todo.style.display = 'block';
             return;
         }
         todo.style.display = 'none';
@@ -124,7 +124,7 @@ const selectList = () => {
     const allToDos = document.querySelectorAll('.todo');
     allToDos.forEach(todo => {
         if (todo.type === list) {
-            todo.style.display = 'flex';
+            todo.style.display = 'block';
             return;
         }
         todo.style.display = 'none';
