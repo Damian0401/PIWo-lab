@@ -1,0 +1,24 @@
+:root {
+    --font-color: black;
+    --background-color: white;
+    --primary-color: white;
+    --secondary-color: white;
+    --tertiary-color: white;
+}
+
+:export {
+    lightFontColor: black;
+    darkFontColor: white;
+
+    lightBackgroundColor: rgb(255, 254, 244);
+    darkBackgroundColor: rgb(72, 68, 68);
+
+    lightPrimaryColor: rgb(64, 100, 231);
+    darkPrimaryColor: rgb(33, 42, 95);
+
+    lightSecondaryColor: rgb(39, 198, 12);
+    darkSecondaryColor: rgb(39, 128, 12);
+
+    lightTertiaryColor: rgb(240, 206, 40);
+    darkTertiaryColor: rgb(193, 144, 29);
+}

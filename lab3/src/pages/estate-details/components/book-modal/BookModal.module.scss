@@ -1,0 +1,57 @@
+.container {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .content {
+        background-color: var(--tertiary-color);
+        padding: 1.5rem;
+        border-radius: 1rem;
+        box-shadow: 0 0 0.5rem 0.05rem black;
+        display: flex;
+        flex-direction: column;
+        row-gap: 1rem;
+
+        &>textarea {
+            color: black;
+            padding: 0.2rem;
+            border: none;
+            border-radius: 0.2rem;
+        }
+
+        &>textarea:focus {
+            outline: none;
+            border: 0.2rem solid var(--secondary-color);
+        }
+
+        &>h1 {
+            text-align: center;
+        }
+
+        &>div>button {
+            border: none;
+            border-radius: 0.2rem;
+            padding: 0.5rem;
+            font-weight: bold;
+            background-color: var(--secondary-color);
+            cursor: pointer;
+
+            &:hover {
+                filter: brightness(0.8);
+            }
+        }
+
+        &Buttons {
+            display: flex;
+            flex-direction: row;
+            column-gap: 0.2rem;
+        }
+    }
+}

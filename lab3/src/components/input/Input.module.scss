@@ -1,0 +1,19 @@
+.container {
+    &>input {
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 0.5rem;
+        font-size: 1.1rem;
+        width: 100%;
+        color: black;
+    }
+
+    &>input:focus {
+        outline: none;
+        border: 0.2rem solid var(--secondary-color);
+    }
+
+    &>label {
+        font-weight: bold;
+    }
+}

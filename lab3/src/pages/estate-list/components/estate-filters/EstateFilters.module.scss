@@ -1,0 +1,23 @@
+.container {
+    padding: 0.5rem;
+
+    &>* {
+        border-radius: 0.2rem;
+    }
+
+    &>input:focus {
+        outline: none;
+    }
+
+    & * {
+        color: black;
+    }
+
+    &>span {
+        vertical-align: middle;
+
+        & * {
+            font-size: 1.5rem;
+        }
+    }
+}

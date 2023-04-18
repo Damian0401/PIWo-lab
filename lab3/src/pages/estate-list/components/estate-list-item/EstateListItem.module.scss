@@ -1,0 +1,35 @@
+.container {
+    background-color: var(--tertiary-color);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+
+    .left {
+        max-width: 60%;
+
+        &>span {
+            word-wrap: break-word;
+        }
+    }
+
+    .right {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+
+        & button {
+            background-color: var(--secondary-color);
+            cursor: pointer;
+            border: none;
+            border-radius: 0.3rem;
+            padding: 0.3rem;
+        }
+
+        & button:hover {
+            filter: brightness(0.8);
+        }
+    }
+}
