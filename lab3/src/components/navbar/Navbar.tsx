@@ -21,6 +21,7 @@ const Navbar = () => {
         <Link to="/">All</Link>
         {user ? (
           <>
+            <Link to="/estate/favorites">Favorites</Link>
             <Link to="/estate/add">Add New</Link>
             <LogoutButton />
           </>

@@ -8,6 +8,7 @@ import { IEstate } from "../interfaces/IEstate";
 import EstateAdd from "./estate/add/EstateAdd";
 import axios from "axios";
 import Login from "./login/Login";
+import EstateFavoritesList from "./estate/favoritesList/EstateFavoritesList";
 
 const App = () => {
   const [selectedEstate, setSelectedEstate] = useState<IEstate>();
@@ -55,6 +56,10 @@ const App = () => {
             {
               path: "add",
               element: <EstateAdd addEstate={handleAddEstate} />,
+            },
+            {
+              path: "favorites",
+              element: <EstateFavoritesList estates={estates} />,
             },
           ],
         },
