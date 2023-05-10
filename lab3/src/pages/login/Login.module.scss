@@ -1,0 +1,15 @@
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+
+    & > div:last-of-type {
+        display: flex;
+        flex-direction: row;
+        column-gap: 0.5rem;
+    }
+    
+    & button {
+        width: fit-content;
+    }
+}

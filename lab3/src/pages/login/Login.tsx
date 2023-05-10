@@ -52,30 +52,37 @@ const Login: React.FC = () => {
     setUser({ ...user, [name]: value });
   };
 
+  const handleCancel = () => {
+    navigate(-1);
+  };
+
   return (
-    <>
-      <form className={styles.formContainer} onSubmit={handleSubmit}>
-        <Input
-          label="Email"
-          name={nameof<IUser>((u) => u.email)}
-          type="email"
-          value={user.email}
-          required={true}
-          onChange={handleChange}
-        />
-        <Input
-          label="Password"
-          name={nameof<IUser>((u) => u.password)}
-          type="password"
-          value={user.password}
-          required={true}
-          onChange={handleChange}
-        />
+    <form className={styles.formContainer} onSubmit={handleSubmit}>
+      <Input
+        label="Email"
+        name={nameof<IUser>((u) => u.email)}
+        type="email"
+        value={user.email}
+        required={true}
+        onChange={handleChange}
+      />
+      <Input
+        label="Password"
+        name={nameof<IUser>((u) => u.password)}
+        type="password"
+        value={user.password}
+        required={true}
+        onChange={handleChange}
+      />
+      <div>
         <button className={controls.button} type="submit">
           Login
         </button>
-      </form>
-    </>
+        <button className={controls.button} onClick={handleCancel}>
+          Cancel
+        </button>
+      </div>
+    </form>
   );
 };
 
