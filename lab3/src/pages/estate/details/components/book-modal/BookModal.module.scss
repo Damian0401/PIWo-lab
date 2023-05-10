@@ -19,18 +19,6 @@
         flex-direction: column;
         row-gap: 1rem;
 
-        &>textarea {
-            color: black;
-            padding: 0.2rem;
-            border: none;
-            border-radius: 0.2rem;
-        }
-
-        &>textarea:focus {
-            outline: none;
-            border: 0.2rem solid var(--secondary-color);
-        }
-
         &>h1 {
             text-align: center;
         }

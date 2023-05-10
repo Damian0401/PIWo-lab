@@ -7,9 +7,12 @@ import controls from "../../../assets/styles/controls.module.scss";
 import BookModal from "./components/book-modal/BookModal";
 import { IMessage } from "../../../interfaces/IMessage";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../common/state/store";
 
 const EstateDetails = ({ estate, selectEstate }: IEstateDetailsProps) => {
   const { id } = useParams<{ id: string }>();
+  const { user } = useSelector((state: RootState) => state.userState);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -59,9 +62,16 @@ const EstateDetails = ({ estate, selectEstate }: IEstateDetailsProps) => {
             <p>Description:</p>
             <span>{estate.description}</span>
           </div>
-          <button onClick={handleBook} className={controls.button}>
-            Book
-          </button>
+          <div className={!user ? styles.loginNeeded : styles.loginNotNeeded}>
+            <span>You need to login first</span>
+            <button
+              onClick={handleBook}
+              className={controls.button}
+              disabled={!user}
+            >
+              Book
+            </button>
+          </div>
         </div>
         <img
           className={styles.detailsImage}

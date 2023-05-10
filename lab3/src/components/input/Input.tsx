@@ -7,7 +7,7 @@ const Input = (props: IInputProps) => {
         type, name,
         value, label,
         required, disabled,
-        onChange
+        ref, onChange
     } = props;
 
     return (
@@ -21,6 +21,7 @@ const Input = (props: IInputProps) => {
                 onChange={onChange}
                 disabled={disabled}
                 required={required}
+                ref={ref}
             />
         </div>
     );

@@ -1,24 +1,27 @@
 import * as React from "react";
 import { IBookModalProps } from "./IBookModalProps";
-import { useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import styles from "./BookModal.module.scss";
 import controls from "../../../../../assets/styles/controls.module.scss";
 import Input from "../../../../../components/input/Input";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../../../common/state/store";
 
 const BookModal = ({ onClose, onSend }: IBookModalProps) => {
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  const { user } = useSelector((state: RootState) => state.userState);
+  const [email, setEmail] = useState(user?.email || "");
+  const messageInputRef = useRef<HTMLTextAreaElement>(null);
 
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  useEffect(() => {
+    messageInputRef.current?.focus();
+  }, []);
+
+  const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.currentTarget.value);
   };
 
-  const handleMessageChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setMessage(e.currentTarget.value);
-  };
-
   const handleSend = () => {
-    onSend({ email: "test", message: "test" });
+    onSend({ email: email, message: messageInputRef.current?.value || "" });
     onClose();
   };
 
@@ -28,17 +31,17 @@ const BookModal = ({ onClose, onSend }: IBookModalProps) => {
     e.stopPropagation();
   };
 
-  const isSendDisabled = !email || !message;
+  const isSendDisabled = !email || !messageInputRef.current?.value;
 
   return (
     <div className={styles.container} onClick={onClose}>
       <div className={styles.content} onClick={handleContentClick}>
-        <h1>Test</h1>
+        <h1>Contact form</h1>
         <textarea
           placeholder="Message"
           rows={5}
-          value={message}
-          onChange={handleMessageChange}
+          ref={messageInputRef}
+          className={controls.textarea}
         />
         <Input
           label="Email"

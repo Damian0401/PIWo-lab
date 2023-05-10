@@ -48,3 +48,40 @@
         }
     }
 }
+
+.loginNotNeeded {
+    &>button {
+        width: 100%;
+    }
+    &>span {
+        display: none;
+    }
+}
+
+.loginNeeded {
+    &>button {
+        width: 100%;
+        cursor: no-drop;
+    }
+    &>span {
+        text-decoration: none !important;
+        color: var(--font-color);
+        background-color: var(--input-color);
+        padding: 0.5rem;
+        z-index: 1;
+        position: relative;
+        top: 0.5rem;
+        left: 1rem;
+        display: none;
+        width: fit-content;
+        border-radius: 0.3rem;
+        opacity: 0.8;
+        font-weight: normal !important;
+    }
+
+    &:hover {
+        &>span {
+            display: block;
+        }
+    }
+}
