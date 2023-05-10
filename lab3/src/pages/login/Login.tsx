@@ -6,8 +6,12 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { IUser } from "../../interfaces/IUser";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { nameof } from "ts-simple-nameof";
+import { useDispatch } from "react-redux";
+import { login } from "../../common/state/user/userActions";
 
 const Login: React.FC = () => {
+  const dispatch = useDispatch();
   const [user, setUser] = useState<IUser>({
     email: "",
     password: "",
@@ -39,6 +43,7 @@ const Login: React.FC = () => {
       toast.error("Invalid credentials!");
       return;
     }
+    dispatch(login(user));
     navigate("/");
   };
 
@@ -52,7 +57,7 @@ const Login: React.FC = () => {
       <form className={styles.formContainer} onSubmit={handleSubmit}>
         <Input
           label="Email"
-          name="email"
+          name={nameof<IUser>((u) => u.email)}
           type="email"
           value={user.email}
           required={true}
@@ -60,7 +65,7 @@ const Login: React.FC = () => {
         />
         <Input
           label="Password"
-          name="password"
+          name={nameof<IUser>((u) => u.password)}
           type="password"
           value={user.password}
           required={true}
