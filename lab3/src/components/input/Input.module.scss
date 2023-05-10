@@ -1,6 +1,6 @@
 .container {
     &>input {
-        border: none;
+        border: 0.2rem solid var(--input-color);
         border-radius: 4px;
         padding: 0.5rem;
         font-size: 1.1rem;

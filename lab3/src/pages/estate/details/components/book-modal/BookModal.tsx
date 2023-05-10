@@ -6,6 +6,7 @@ import controls from "../../../../../assets/styles/controls.module.scss";
 import Input from "../../../../../components/input/Input";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../../common/state/store";
+import { toast } from "react-toastify";
 
 const BookModal = ({ onClose, onSend }: IBookModalProps) => {
   const { user } = useSelector((state: RootState) => state.userState);
@@ -21,6 +22,10 @@ const BookModal = ({ onClose, onSend }: IBookModalProps) => {
   };
 
   const handleSend = () => {
+    if (!messageInputRef.current?.value) {
+      toast.error("Message is required!");
+      return;
+    }
     onSend({ email: email, message: messageInputRef.current?.value || "" });
     onClose();
   };
@@ -30,8 +35,6 @@ const BookModal = ({ onClose, onSend }: IBookModalProps) => {
   ) => {
     e.stopPropagation();
   };
-
-  const isSendDisabled = !email || !messageInputRef.current?.value;
 
   return (
     <div className={styles.container} onClick={onClose}>
@@ -53,7 +56,7 @@ const BookModal = ({ onClose, onSend }: IBookModalProps) => {
         <div className={styles.contentButtons}>
           <button
             onClick={handleSend}
-            disabled={isSendDisabled}
+            disabled={!email}
             className={controls.button}
           >
             Send
