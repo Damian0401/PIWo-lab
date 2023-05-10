@@ -9,14 +9,18 @@ export const login = (user: IUser) => ({
     type: UserActionTypes.LOGIN,
     payload: user,
 });
-type LoginAction = ReturnType<typeof login>;
+interface ILoginAction {
+    type: UserActionTypes.LOGIN;
+    payload: IUser;
+}
 
 export const logout = () => ({
     type: UserActionTypes.LOGOUT,
-    payload: null,
 });
-type LogoutAction = ReturnType<typeof logout>;
+interface ILogoutAction {
+    type: UserActionTypes.LOGOUT;
+}
 
 export type UserActions = 
-    | LoginAction 
-    | LogoutAction;
+    | ILoginAction 
+    | ILogoutAction;

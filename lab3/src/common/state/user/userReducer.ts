@@ -5,7 +5,9 @@ export interface IUserState {
     user: IUser | null;
 }
 
-const user = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")!) : null;
+const user = localStorage.getItem("user") 
+    ? JSON.parse(localStorage.getItem("user")!) 
+    : null;
 export const initialState: IUserState = {
     user: user,
 }

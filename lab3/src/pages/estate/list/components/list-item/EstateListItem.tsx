@@ -1,10 +1,26 @@
 import * as React from "react";
 import { IEstateListItemProps } from "./IEstateListItemProps";
 import { Link } from "react-router-dom";
+import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import styles from "./EstateListItem.module.scss";
 import controls from "../../../../../assets/styles/controls.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../../../../common/state/store";
+import {
+  isFavorite,
+  toggleFavorite,
+} from "../../../../../common/state/favorites/favoritesActions";
 
-const EstateListItem = ({ estate }: IEstateListItemProps) => {
+const EstateListItem: React.FC<IEstateListItemProps> = ({ estate }) => {
+  const { user } = useSelector((state: RootState) => state.userState);
+  const { favorites } = useSelector((state: RootState) => state.favoritesState);
+  const dispatch = useDispatch();
+
+  const handleToggleFavorite = () => {
+    if (!user) return;
+    dispatch(toggleFavorite(user.email, estate.id));
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.left}>
@@ -20,6 +36,15 @@ const EstateListItem = ({ estate }: IEstateListItemProps) => {
           <button className={controls.button}>Book Meeting</button>
         </Link>
       </div>
+      {user && (
+        <div className={styles.favorite} onClick={handleToggleFavorite}>
+          {isFavorite(user.email, estate.id, favorites) ? (
+            <MdFavorite />
+          ) : (
+            <MdFavoriteBorder />
+          )}
+        </div>
+      )}
     </div>
   );
 };
