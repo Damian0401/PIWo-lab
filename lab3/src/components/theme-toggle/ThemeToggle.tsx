@@ -1,56 +1,57 @@
-import * as React from 'react';
-import { useEffect, useState } from 'react';
-import colors from '../../assets/styles/colors.module.scss';
-import { BsFillSunFill, BsFillMoonFill } from 'react-icons/bs';
-import styles from './ThemeToggle.module.scss';
+import * as React from "react";
+import { useEffect, useState } from "react";
+import colors from "../../assets/styles/colors.module.scss";
+import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
+import styles from "./ThemeToggle.module.scss";
 
 const ThemeToggle = () => {
-    const [isLight, setIsLight] = useState(true);
+  const [isLight, setIsLight] = useState(true);
 
-    useEffect(() => {
-        const root = document.documentElement;
+  useEffect(() => {
+    const root = document.documentElement;
 
-        const backgroundColor = isLight
-            ? colors.lightBackgroundColor
-            : colors.darkBackgroundColor;
-        root.style.setProperty('--background-color', backgroundColor);
+    const backgroundColor = isLight
+      ? colors.lightBackgroundColor
+      : colors.darkBackgroundColor;
+    root.style.setProperty("--background-color", backgroundColor);
 
-        const fontColor = isLight
-            ? colors.lightFontColor
-            : colors.darkFontColor;
-        root.style.setProperty('--font-color', fontColor);
+    const fontColor = isLight ? colors.lightFontColor : colors.darkFontColor;
+    root.style.setProperty("--font-color", fontColor);
 
-        const primaryColor = isLight
-            ? colors.lightPrimaryColor
-            : colors.darkPrimaryColor;
-        root.style.setProperty('--primary-color', primaryColor);
+    const inputColor = isLight ? colors.lightInputColor : colors.darkInputColor;
+    root.style.setProperty("--input-color", inputColor);
 
-        const secondaryColor = isLight
-            ? colors.lightSecondaryColor
-            : colors.darkSecondaryColor;
-        root.style.setProperty('--secondary-color', secondaryColor);
+    const primaryColor = isLight
+      ? colors.lightPrimaryColor
+      : colors.darkPrimaryColor;
+    root.style.setProperty("--primary-color", primaryColor);
 
-        const tertiaryColor = isLight
-            ? colors.lightTertiaryColor
-            : colors.darkTertiaryColor;
-        root.style.setProperty('--tertiary-color', tertiaryColor);
-    }, [isLight])
+    const secondaryColor = isLight
+      ? colors.lightSecondaryColor
+      : colors.darkSecondaryColor;
+    root.style.setProperty("--secondary-color", secondaryColor);
 
-    useEffect(() => {
-        const currentHour = new Date().getHours();
-        const isDayTime = currentHour > 6 && currentHour < 20;
-        setIsLight(isDayTime);
-    }, [])
+    const tertiaryColor = isLight
+      ? colors.lightTertiaryColor
+      : colors.darkTertiaryColor;
+    root.style.setProperty("--tertiary-color", tertiaryColor);
+  }, [isLight]);
 
-    const handleToggle = (): void => {
-        setIsLight(!isLight);
-    }
+  useEffect(() => {
+    const currentHour = new Date().getHours();
+    const isDayTime = currentHour > 6 && currentHour < 20;
+    setIsLight(isDayTime);
+  }, []);
 
-    return (
-        <button onClick={handleToggle} className={styles.toggle}>
-            {isLight ? <BsFillMoonFill /> : <BsFillSunFill />}
-        </button>
-    );
-}
+  const handleToggle = (): void => {
+    setIsLight(!isLight);
+  };
+
+  return (
+    <button onClick={handleToggle} className={styles.toggle}>
+      {isLight ? <BsFillMoonFill /> : <BsFillSunFill />}
+    </button>
+  );
+};
 
 export default ThemeToggle;

@@ -1,5 +1,6 @@
 :root {
     --font-color: black;
+    --input-color: white;
     --background-color: white;
     --primary-color: white;
     --secondary-color: white;
@@ -21,4 +22,7 @@
 
     lightTertiaryColor: rgb(240, 206, 40);
     darkTertiaryColor: rgb(193, 144, 29);
+
+    lightInputColor: white;
+    darkInputColor: rgb(72, 68, 68);
 }
