@@ -7,5 +7,5 @@ export interface IEstate {
     image: string;
     city: string;
     bedrooms: number;
-
+    email: string;
 }

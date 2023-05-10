@@ -1,0 +1,15 @@
+.button {
+    background-color: var(--secondary-color);
+    cursor: pointer;
+    border: none;
+    border-radius: 0.3rem;
+    padding: 0.3rem;
+
+    &:hover {
+        filter: brightness(0.8);
+    }
+
+    &:disabled {
+        filter: grayscale(0.5);
+    }
+}

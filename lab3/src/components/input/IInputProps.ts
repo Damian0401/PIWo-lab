@@ -7,5 +7,5 @@ export interface IInputProps {
     label: string;
     required?: boolean;
     disabled?: boolean;
-    onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+    onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }

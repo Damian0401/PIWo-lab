@@ -35,19 +35,6 @@
             text-align: center;
         }
 
-        &>div>button {
-            border: none;
-            border-radius: 0.2rem;
-            padding: 0.5rem;
-            font-weight: bold;
-            background-color: var(--secondary-color);
-            cursor: pointer;
-
-            &:hover {
-                filter: brightness(0.8);
-            }
-        }
-
         &Buttons {
             display: flex;
             flex-direction: row;

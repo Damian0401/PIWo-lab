@@ -11,12 +11,4 @@
     row-gap: 0.5rem;
     overflow-y: auto;
     max-height: 75vh;
-
-    &>button {
-        border: none;
-        border-radius: 0.5rem;
-        padding: 0.5rem;
-        font-weight: bold;
-        background-color: var(--secondary-color);
-    }
 }
