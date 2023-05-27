@@ -4,11 +4,11 @@ import Navbar from "../components/navbar/Navbar";
 import PageWrapper from "../components/page-wrapper/PageWrapper";
 import EstateList from "./estate/list/EstateList";
 import EstateDetails from "./estate/details/EstateDetails";
-import { IEstate } from "../interfaces/IEstate";
 import EstateAdd from "./estate/add/EstateAdd";
 import axios from "axios";
 import Login from "./login/Login";
 import EstateFavoritesList from "./estate/favoritesList/EstateFavoritesList";
+import { IEstate } from "../common/interfaces";
 
 const App = () => {
   const [selectedEstate, setSelectedEstate] = useState<IEstate>();

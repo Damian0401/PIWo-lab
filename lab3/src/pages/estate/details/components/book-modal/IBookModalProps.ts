@@ -1,4 +1,4 @@
-import { IMessage } from "../../../../../interfaces/IMessage";
+import { IMessage } from "../../../../../common/interfaces";
 
 export interface IBookModalProps {
     onClose: () => void;

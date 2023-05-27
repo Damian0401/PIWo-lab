@@ -5,10 +5,10 @@ import { useEffect, useState } from "react";
 import styles from "./EstateDetails.module.scss";
 import controls from "../../../assets/styles/controls.module.scss";
 import BookModal from "./components/book-modal/BookModal";
-import { IMessage } from "../../../interfaces/IMessage";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../common/state/store";
+import { IMessage } from "../../../common/interfaces";
 
 const EstateDetails = ({ estate, selectEstate }: IEstateDetailsProps) => {
   const { id } = useParams<{ id: string }>();

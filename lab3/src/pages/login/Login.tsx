@@ -3,12 +3,12 @@ import styles from "./Login.module.scss";
 import controls from "../../assets/styles/controls.module.scss";
 import Input from "../../components/input/Input";
 import { ChangeEvent, FormEvent, useState } from "react";
-import { IUser } from "../../interfaces/IUser";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { nameof } from "ts-simple-nameof";
 import { useDispatch } from "react-redux";
 import { login } from "../../common/state/user/userActions";
+import { IUser } from "../../common/interfaces";
 
 const Login: React.FC = () => {
   const dispatch = useDispatch();

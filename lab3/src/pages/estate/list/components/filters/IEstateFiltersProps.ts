@@ -1,4 +1,4 @@
-import { IEstate } from "../../../../../interfaces/IEstate";
+import { IEstate } from "../../../../../common/interfaces";
 
 export interface IEstateFiltersProps {
     estates: IEstate[];

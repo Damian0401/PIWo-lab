@@ -1,4 +1,4 @@
-import { IFavorites } from "../../../interfaces/IFavorites";
+import { IFavorites } from "../../interfaces";
 
 
 export enum FavoritesActionTypes {

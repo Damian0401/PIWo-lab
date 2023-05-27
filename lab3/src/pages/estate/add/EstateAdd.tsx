@@ -4,9 +4,9 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import Input from "../../../components/input/Input";
 import styles from "./EstateAdd.module.scss";
 import controls from "../../../assets/styles/controls.module.scss";
-import { IEstate } from "../../../interfaces/IEstate";
 import { useNavigate } from "react-router-dom";
 import { nameof } from "ts-simple-nameof";
+import { IEstate } from "../../../common/interfaces";
 
 const EstateAdd = ({ addEstate }: IEstateAddProps) => {
   const navigate = useNavigate();
