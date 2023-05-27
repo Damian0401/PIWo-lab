@@ -1,15 +1,12 @@
-.formContainer {
+.container {
     display: flex;
     flex-direction: column;
+    align-items: center;
     row-gap: 0.5rem;
-
-    & > div:last-of-type {
-        display: flex;
-        flex-direction: row;
-        column-gap: 0.5rem;
-    }
+    min-width: 25vw;
+    padding: 2rem;
     
     & button {
-        width: fit-content;
+        width: 100%;
     }
 }

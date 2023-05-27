@@ -4,13 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { logout } from "../../common/state/user/userActions";
 import { BiLogOut } from "react-icons/bi";
 import styles from "./LogoutButton.module.scss";
+import { signOut } from "../../common/api/services/userService";
 
 const LogoutButton = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    dispatch(logout());
+    signOut();
     navigate("/");
   };
 

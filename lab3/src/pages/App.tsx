@@ -7,7 +7,7 @@ import EstateDetails from "./estate/details/EstateDetails";
 import EstateAdd from "./estate/add/EstateAdd";
 import axios from "axios";
 import Login from "./login/Login";
-import EstateFavoritesList from "./estate/favoritesList/EstateFavoritesList";
+import EstateFavorites from "./estate/favorites/EstateFavoritesList";
 import { IEstate } from "../common/interfaces";
 
 const App = () => {
@@ -59,7 +59,7 @@ const App = () => {
             },
             {
               path: "favorites",
-              element: <EstateFavoritesList estates={estates} />,
+              element: <EstateFavorites estates={estates} />,
             },
           ],
         },

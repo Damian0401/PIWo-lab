@@ -15,7 +15,7 @@ const initialState: IFavoritesState = {
 export const favoritesReducer = (state: IFavoritesState = initialState, action: FavoritesActions): IFavoritesState => {
     switch (action.type) {
         case FavoritesActionTypes.TOGGLE_FAVORITE: {
-            const favorite = state.favorites.find(favorite => favorite.userEmail === action.payload.userEmail);
+            const favorite = state.favorites.find(favorite => favorite.userId === action.payload.userId);
 
             if (favorite) {
                 let estates = [...favorite.estates]
@@ -28,12 +28,12 @@ export const favoritesReducer = (state: IFavoritesState = initialState, action: 
                 localStorage.setItem("favorites", JSON.stringify(state.favorites));
                 return {
                     ...state,
-                    favorites: [...state.favorites.filter(x => x.userEmail !== action.payload.userEmail), {userEmail: action.payload.userEmail, estates}],
+                    favorites: [...state.favorites.filter(x => x.userId !== action.payload.userId), {userId: action.payload.userId, estates}],
                 }
             }
 
             const newFavorite: IFavorites = {
-                userEmail: action.payload.userEmail,
+                userId: action.payload.userId,
                 estates: [action.payload.estateId],
             }
             localStorage.setItem("favorites", JSON.stringify([...state.favorites, newFavorite]));

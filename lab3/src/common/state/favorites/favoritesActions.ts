@@ -5,17 +5,18 @@ export enum FavoritesActionTypes {
     TOGGLE_FAVORITE = "TOGGLE_FAVORITE",
 }
 
-export const toggleFavorite = (userEmail: string, estateId: number) => ({
+export const toggleFavorite = (userId: string, estateId: number) => ({
     type: FavoritesActionTypes.TOGGLE_FAVORITE,
-    payload: { userEmail, estateId },
+    payload: { userId: userId, estateId },
 });
 interface IToggleFavoriteAction {
     type: FavoritesActionTypes.TOGGLE_FAVORITE;
-    payload: { userEmail: string, estateId: number };
+    payload: { userId: string, estateId: number };
 }
 
-export const isFavorite = (userEmail: string, estateId: number, favorities: IFavorites[]) => {
-    const favorite = favorities.find(favorite => favorite.userEmail === userEmail);
+export const isFavorite = (user: string, estateId: number, favorities: IFavorites[]) => {
+    const favorite = favorities.find(favorite => favorite.userId === user);
+
     if (!favorite) {
         return false;
     }

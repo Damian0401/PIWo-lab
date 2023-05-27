@@ -1,4 +1,4 @@
 export interface IFavorites {
-    userEmail: string;
+    userId: string;
     estates: number[];
 }

@@ -5,9 +5,10 @@ import ThemeToggle from "../theme-toggle/ThemeToggle";
 import { useSelector } from "react-redux";
 import { RootState } from "../../common/state/store";
 import LogoutButton from "../logout-button/LogoutButton";
+import { useAuth } from "../../common/api/services/userService";
 
 const Navbar = () => {
-  const { user } = useSelector((state: RootState) => state.userState);
+  const { user } = useAuth();
 
   return (
     <nav className={styles.container}>
@@ -17,7 +18,7 @@ const Navbar = () => {
         </Link>
       </div>
       <div className={styles.menu}>
-        <p>{user?.email}</p>
+        <p>{user?.displayName || user?.email}</p>
         <Link to="/">All</Link>
         {user ? (
           <>

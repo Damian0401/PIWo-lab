@@ -1,5 +1,5 @@
 import { IEstate } from "../../../common/interfaces";
 
-export interface IEstateFavoritesListProps {
+export interface IEstateFavoritesProps {
     estates: IEstate[];
 }
