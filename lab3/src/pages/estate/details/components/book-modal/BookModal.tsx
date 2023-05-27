@@ -4,18 +4,21 @@ import { ChangeEvent, useEffect, useRef, useState } from "react";
 import styles from "./BookModal.module.scss";
 import controls from "../../../../../assets/styles/controls.module.scss";
 import Input from "../../../../../components/input/Input";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../../../common/state/store";
 import { toast } from "react-toastify";
+import { useAuth } from "../../../../../common/api/services/userService";
 
 const BookModal = ({ onClose, onSend }: IBookModalProps) => {
-  const { user } = useSelector((state: RootState) => state.userState);
-  const [email, setEmail] = useState(user?.email || "");
+  const { user } = useAuth();
+  const [email, setEmail] = useState("");
   const messageInputRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
     messageInputRef.current?.focus();
   }, []);
+
+  useEffect(() => {
+    setEmail(user?.email || "");
+  }, [user]);
 
   const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.currentTarget.value);

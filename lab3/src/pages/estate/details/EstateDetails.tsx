@@ -6,13 +6,12 @@ import styles from "./EstateDetails.module.scss";
 import controls from "../../../assets/styles/controls.module.scss";
 import BookModal from "./components/book-modal/BookModal";
 import { toast } from "react-toastify";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../common/state/store";
 import { IMessage } from "../../../common/interfaces";
+import { useAuth } from "../../../common/api/services/userService";
 
 const EstateDetails = ({ estate, selectEstate }: IEstateDetailsProps) => {
   const { id } = useParams<{ id: string }>();
-  const { user } = useSelector((state: RootState) => state.userState);
+  const { user } = useAuth();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
