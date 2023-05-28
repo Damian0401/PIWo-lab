@@ -9,6 +9,8 @@ import axios from "axios";
 import Login from "./login/Login";
 import EstateFavorites from "./estate/favorites/EstateFavoritesList";
 import { IEstate } from "../common/interfaces";
+import PrivateRoute from "../components/private-route/PrivateRoute";
+import AnonymousRoute from "../components/anonymous-route/AnonymousRoute";
 
 const App = () => {
   const [selectedEstate, setSelectedEstate] = useState<IEstate>();
@@ -55,17 +57,29 @@ const App = () => {
             },
             {
               path: "add",
-              element: <EstateAdd addEstate={handleAddEstate} />,
+              element: (
+                <PrivateRoute>
+                  <EstateAdd addEstate={handleAddEstate} />
+                </PrivateRoute>
+              ),
             },
             {
               path: "favorites",
-              element: <EstateFavorites estates={estates} />,
+              element: (
+                <PrivateRoute>
+                  <EstateFavorites estates={estates} />
+                </PrivateRoute>
+              ),
             },
           ],
         },
         {
           path: "login",
-          element: <Login />,
+          element: (
+            <AnonymousRoute>
+              <Login />
+            </AnonymousRoute>
+          ),
         },
       ],
     },
