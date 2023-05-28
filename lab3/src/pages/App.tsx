@@ -10,7 +10,13 @@ import EstateFavorites from "./estate/favorites/EstateFavorites";
 import { IEstate } from "../common/interfaces";
 import PrivateRoute from "../components/private-route/PrivateRoute";
 import AnonymousRoute from "../components/anonymous-route/AnonymousRoute";
-import { addEstate, getAllEstates } from "../common/api/services/EstateService";
+import {
+  addEstate,
+  getAllEstates,
+  updateEstate,
+} from "../common/api/services/EstateService";
+import Register from "./register/Register";
+import EstateEdit from "./estate/edit/EstateEdit";
 
 const App = () => {
   const [selectedEstate, setSelectedEstate] = useState<IEstate>();
@@ -30,6 +36,12 @@ const App = () => {
     addEstate(estate).then(() => setRefresh(!refresh));
   };
 
+  const handleEditEstate = (estate: IEstate): void => {
+    if (!estate.id) return;
+
+    updateEstate(estate.id, estate).then(() => setRefresh(!refresh));
+  };
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -42,6 +54,18 @@ const App = () => {
         {
           path: "estate",
           children: [
+            {
+              path: ":id/edit",
+              element: (
+                <PrivateRoute>
+                  <EstateEdit
+                    estate={selectedEstate}
+                    selectEstate={handleSelectEstate}
+                    editEstate={handleEditEstate}
+                  />
+                </PrivateRoute>
+              ),
+            },
             {
               path: ":id",
               element: (
@@ -74,6 +98,14 @@ const App = () => {
           element: (
             <AnonymousRoute>
               <Login />
+            </AnonymousRoute>
+          ),
+        },
+        {
+          path: "register",
+          element: (
+            <AnonymousRoute>
+              <Register />
             </AnonymousRoute>
           ),
         },

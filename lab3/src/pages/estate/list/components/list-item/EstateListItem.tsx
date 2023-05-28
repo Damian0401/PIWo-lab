@@ -25,6 +25,8 @@ const EstateListItem: React.FC<IEstateListItemProps> = ({ estate }) => {
   const isEstateFavorite =
     user && estate.id ? isFavorite(user.uid, estate.id, favorites) : false;
 
+  const isOwner = user?.uid === estate.userId;
+
   return (
     <div className={styles.container}>
       <div className={styles.left}>
@@ -36,11 +38,17 @@ const EstateListItem: React.FC<IEstateListItemProps> = ({ estate }) => {
         <span>{estate.description}</span>
       </div>
       <div className={styles.right}>
-        <Link to={`/estate/${estate.id}`}>
-          <button className={controls.button}>Book Meeting</button>
-        </Link>
+        {isOwner ? (
+          <Link to={`/estate/${estate.id}/edit`}>
+            <button className={controls.button}>Edit</button>
+          </Link>
+        ) : (
+          <Link to={`/estate/${estate.id}`}>
+            <button className={controls.button}>Book Meeting</button>
+          </Link>
+        )}
       </div>
-      {user && (
+      {user && !isOwner && (
         <div className={styles.favorite} onClick={handleToggleFavorite}>
           {isEstateFavorite ? <MdFavorite /> : <MdFavoriteBorder />}
         </div>
