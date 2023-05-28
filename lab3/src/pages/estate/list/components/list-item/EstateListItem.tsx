@@ -10,7 +10,7 @@ import {
   isFavorite,
   toggleFavorite,
 } from "../../../../../common/state/favorites/favoritesActions";
-import { useAuth } from "../../../../../common/api/services/userService";
+import { useAuth } from "../../../../../common/api/services/UserService";
 
 const EstateListItem: React.FC<IEstateListItemProps> = ({ estate }) => {
   const { user } = useAuth();
@@ -18,9 +18,12 @@ const EstateListItem: React.FC<IEstateListItemProps> = ({ estate }) => {
   const dispatch = useDispatch();
 
   const handleToggleFavorite = () => {
-    if (!user) return;
+    if (!user || !estate.id) return;
     dispatch(toggleFavorite(user.uid, estate.id));
   };
+
+  const isEstateFavorite =
+    user && estate.id ? isFavorite(user.uid, estate.id, favorites) : false;
 
   return (
     <div className={styles.container}>
@@ -39,11 +42,7 @@ const EstateListItem: React.FC<IEstateListItemProps> = ({ estate }) => {
       </div>
       {user && (
         <div className={styles.favorite} onClick={handleToggleFavorite}>
-          {isFavorite(user.uid, estate.id, favorites) ? (
-            <MdFavorite />
-          ) : (
-            <MdFavoriteBorder />
-          )}
+          {isEstateFavorite ? <MdFavorite /> : <MdFavoriteBorder />}
         </div>
       )}
     </div>

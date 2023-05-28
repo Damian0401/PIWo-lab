@@ -7,6 +7,10 @@
         width: 100%;
         color: var(--font-color);
         background-color: var(--input-color);
+
+        &:disabled {
+            cursor: no-drop;
+        }
     }
 
     &>input:focus {

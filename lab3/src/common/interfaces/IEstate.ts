@@ -1,5 +1,5 @@
 export interface IEstate {
-    id: number;
+    id?: string;
     title: string;
     address: string;
     description: string;
@@ -8,4 +8,5 @@ export interface IEstate {
     city: string;
     bedrooms: number;
     email: string;
+    userId: string;
 }

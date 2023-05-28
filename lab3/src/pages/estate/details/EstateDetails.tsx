@@ -7,7 +7,7 @@ import controls from "../../../assets/styles/controls.module.scss";
 import BookModal from "./components/book-modal/BookModal";
 import { toast } from "react-toastify";
 import { IMessage } from "../../../common/interfaces";
-import { useAuth } from "../../../common/api/services/userService";
+import { useAuth } from "../../../common/api/services/UserService";
 
 const EstateDetails = ({ estate, selectEstate }: IEstateDetailsProps) => {
   const { id } = useParams<{ id: string }>();
@@ -16,7 +16,9 @@ const EstateDetails = ({ estate, selectEstate }: IEstateDetailsProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    selectEstate(Number(id));
+    if (!id) return;
+
+    selectEstate(id);
   }, [id, selectEstate]);
 
   const handleBook = () => {

@@ -4,7 +4,7 @@ import controls from "../../assets/styles/controls.module.scss";
 import {
   signInWithGithub,
   signInWithGoogle,
-} from "../../common/api/services/userService";
+} from "../../common/api/services/UserService";
 import { useNavigate } from "react-router-dom";
 import { UserCredential } from "firebase/auth";
 

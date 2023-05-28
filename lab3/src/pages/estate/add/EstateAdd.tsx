@@ -7,12 +7,13 @@ import controls from "../../../assets/styles/controls.module.scss";
 import { useNavigate } from "react-router-dom";
 import { nameof } from "ts-simple-nameof";
 import { IEstate } from "../../../common/interfaces";
+import { useAuth } from "../../../common/api/services/UserService";
 
 const EstateAdd = ({ addEstate }: IEstateAddProps) => {
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   const [estate, setEstate] = useState<IEstate>({
-    id: -1,
     title: "",
     description: "",
     price: 0,
@@ -20,7 +21,8 @@ const EstateAdd = ({ addEstate }: IEstateAddProps) => {
     image: "",
     city: "",
     bedrooms: 0,
-    email: "",
+    email: user?.email || "",
+    userId: user?.uid || "-1",
   });
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -48,14 +50,14 @@ const EstateAdd = ({ addEstate }: IEstateAddProps) => {
           name={nameof<IEstate>((u) => u.title)}
           value={estate.title}
           onChange={handleChange}
-          required={true}
+          required
         />
         <Input
           label="Description"
           name={nameof<IEstate>((u) => u.description)}
           value={estate.description}
           onChange={handleChange}
-          required={true}
+          required
         />
         <Input
           label="Price"
@@ -63,28 +65,28 @@ const EstateAdd = ({ addEstate }: IEstateAddProps) => {
           value={estate.price}
           onChange={handleChangeNumber}
           type="number"
-          required={true}
+          required
         />
         <Input
           label="Address"
           name={nameof<IEstate>((u) => u.address)}
           value={estate.address}
           onChange={handleChange}
-          required={true}
+          required
         />
         <Input
           label="Image"
           name={nameof<IEstate>((u) => u.image)}
           value={estate.image}
           onChange={handleChange}
-          required={true}
+          required
         />
         <Input
           label="City"
           name={nameof<IEstate>((u) => u.city)}
           value={estate.city}
           onChange={handleChange}
-          required={true}
+          required
         />
         <Input
           label="Bedrooms"
@@ -92,14 +94,15 @@ const EstateAdd = ({ addEstate }: IEstateAddProps) => {
           value={estate.bedrooms}
           onChange={handleChangeNumber}
           type="number"
-          required={true}
+          required
         />
         <Input
           label="Email"
           name={nameof<IEstate>((u) => u.email)}
           value={estate.email}
           onChange={handleChange}
-          required={true}
+          required
+          disabled
         />
         <button type="submit" className={controls.button}>
           Add

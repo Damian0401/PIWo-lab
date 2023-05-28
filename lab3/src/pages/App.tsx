@@ -5,33 +5,29 @@ import PageWrapper from "../components/page-wrapper/PageWrapper";
 import EstateList from "./estate/list/EstateList";
 import EstateDetails from "./estate/details/EstateDetails";
 import EstateAdd from "./estate/add/EstateAdd";
-import axios from "axios";
 import Login from "./login/Login";
-import EstateFavorites from "./estate/favorites/EstateFavoritesList";
+import EstateFavorites from "./estate/favorites/EstateFavorites";
 import { IEstate } from "../common/interfaces";
 import PrivateRoute from "../components/private-route/PrivateRoute";
 import AnonymousRoute from "../components/anonymous-route/AnonymousRoute";
+import { addEstate, getAllEstates } from "../common/api/services/EstateService";
 
 const App = () => {
   const [selectedEstate, setSelectedEstate] = useState<IEstate>();
   const [estates, setEstates] = useState<IEstate[]>([]);
+  const [refresh, setRefresh] = useState<boolean>(false);
 
   useEffect(() => {
-    axios
-      .get<IEstate[]>("/data/estates.json")
-      .then((response) => setEstates(response.data));
-  }, []);
+    getAllEstates().then((estates) => setEstates(estates));
+  }, [refresh]);
 
-  const handleSelectEstate = (id: number): void => {
+  const handleSelectEstate = (id: string): void => {
     const estate = estates.find((estate) => estate.id === id);
     setSelectedEstate(estate);
   };
 
   const handleAddEstate = (estate: IEstate): void => {
-    const ids = estates.map((estate) => estate.id);
-    const maxId = Math.max(...ids);
-    estate.id = maxId + 1;
-    setEstates([...estates, estate]);
+    addEstate(estate).then(() => setRefresh(!refresh));
   };
 
   const router = createBrowserRouter([

@@ -5,7 +5,7 @@ import styles from "./BookModal.module.scss";
 import controls from "../../../../../assets/styles/controls.module.scss";
 import Input from "../../../../../components/input/Input";
 import { toast } from "react-toastify";
-import { useAuth } from "../../../../../common/api/services/userService";
+import { useAuth } from "../../../../../common/api/services/UserService";
 
 const BookModal = ({ onClose, onSend }: IBookModalProps) => {
   const { user } = useAuth();

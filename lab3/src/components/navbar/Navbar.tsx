@@ -3,7 +3,7 @@ import styles from "./Navbar.module.scss";
 import { Link } from "react-router-dom";
 import ThemeToggle from "../theme-toggle/ThemeToggle";
 import LogoutButton from "../logout-button/LogoutButton";
-import { useAuth } from "../../common/api/services/userService";
+import { useAuth } from "../../common/api/services/UserService";
 
 const Navbar = () => {
   const { user } = useAuth();
