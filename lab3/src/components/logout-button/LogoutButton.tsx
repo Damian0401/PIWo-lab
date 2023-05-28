@@ -8,8 +8,7 @@ const LogoutButton = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    signOut();
-    navigate("/");
+    signOut().then(() => navigate("/"));
   };
 
   return (

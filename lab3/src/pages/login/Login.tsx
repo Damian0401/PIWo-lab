@@ -5,15 +5,29 @@ import {
   signInWithGithub,
   signInWithGoogle,
 } from "../../common/api/services/userService";
+import { useNavigate } from "react-router-dom";
+import { UserCredential } from "firebase/auth";
 
 const Login: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleLogin = (loginMethod: () => Promise<UserCredential>) => {
+    loginMethod().then(() => navigate("/"));
+  };
+
   return (
     <div className={styles.container}>
       <h1>Select login method</h1>
-      <button onClick={signInWithGoogle} className={controls.button}>
+      <button
+        onClick={() => handleLogin(signInWithGoogle)}
+        className={controls.button}
+      >
         Google
       </button>
-      <button onClick={signInWithGithub} className={controls.button}>
+      <button
+        onClick={() => handleLogin(signInWithGithub)}
+        className={controls.button}
+      >
         Github
       </button>
     </div>
