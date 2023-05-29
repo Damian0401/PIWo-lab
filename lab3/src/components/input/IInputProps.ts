@@ -4,9 +4,10 @@ export interface IInputProps {
     value?: string | number;
     name: string;
     type?: "text" | "number" | "password" | "email";
-    label: string;
+    label?: string;
     required?: boolean;
     disabled?: boolean;
     ref?: RefObject<HTMLInputElement>;
     onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+    placeholder?: string;
 }

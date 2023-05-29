@@ -1,4 +1,4 @@
-import { GithubAuthProvider, GoogleAuthProvider, User, signInWithPopup } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider, User, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, updateProfile } from "firebase/auth";
 import { auth } from "../config";
 import { useEffect, useState } from "react";
 
@@ -13,6 +13,14 @@ export const signInWithGoogle = () => {
 
 export const signInWithGithub = () => {
     return signInWithPopup(auth, githubProvider);
+}
+
+export const signInWithEmail = (email: string, password: string) => {
+    return signInWithEmailAndPassword(auth, email, password);
+}
+
+export const registerWithEmail = (email: string, password: string) => {
+    return createUserWithEmailAndPassword(auth, email, password);
 }
 
 export const signOut = () => {
@@ -30,5 +38,14 @@ export const useAuth = () => {
         return unsubscribe;
     }, []);
 
-    return { user };
+    const updateDisplayName = (displayName: string) => {
+        if (!auth.currentUser) {
+            return Promise.reject();
+        }
+
+        return updateProfile(auth.currentUser, { displayName })
+            .then(() => setUser({...auth.currentUser!, displayName: displayName}));
+    }
+
+    return { user, updateDisplayName };
 }

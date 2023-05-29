@@ -1,0 +1,11 @@
+.setDisplayName {
+    display: flex;
+    flex-direction: row;
+
+    & input {
+        background-color: white !important;
+        color: black !important;
+        border: 0.2rem solid var(--secondary-color) !important;
+        min-width: 5rem;
+    }
+}

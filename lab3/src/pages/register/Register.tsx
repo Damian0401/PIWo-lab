@@ -7,18 +7,18 @@ import Input from "../../components/input/Input";
 import { nameof } from "ts-simple-nameof";
 import { IRegister } from "../../common/interfaces";
 import { toast } from "react-toastify";
+import { registerWithEmail } from "../../common/api/services/UserService";
 
 const Register = () => {
   const [registerValues, setRegisterValues] = React.useState<IRegister>({
     email: "",
-    displayName: "",
     password: "",
     confirmPassword: "",
   });
 
   const navigate = useNavigate();
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (registerValues.password !== registerValues.confirmPassword) {
@@ -26,7 +26,21 @@ const Register = () => {
       return;
     }
 
-    navigate("/");
+    if (registerValues.password.length < 6) {
+      toast.error("Password must be at least 6 characters long!");
+      return;
+    }
+
+    try {
+      await registerWithEmail(
+        registerValues.email,
+        registerValues.password
+      ).then(() => {
+        toast.success("Registration successful!");
+      });
+    } catch (error) {
+      toast.error("Registration failed!");
+    }
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -49,14 +63,6 @@ const Register = () => {
         onChange={handleChange}
       />
       <Input
-        label="DisplayName"
-        name={nameof<IRegister>((u) => u.displayName)}
-        type="text"
-        value={registerValues.displayName}
-        required
-        onChange={handleChange}
-      />
-      <Input
         label="Password"
         name={nameof<IRegister>((u) => u.password)}
         type="password"
@@ -68,7 +74,7 @@ const Register = () => {
         label="ConfirmPassword"
         name={nameof<IRegister>((u) => u.confirmPassword)}
         type="password"
-        value={registerValues.password}
+        value={registerValues.confirmPassword}
         required
         onChange={handleChange}
       />

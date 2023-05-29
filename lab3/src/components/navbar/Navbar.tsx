@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 import ThemeToggle from "../theme-toggle/ThemeToggle";
 import LogoutButton from "../logout-button/LogoutButton";
 import { useAuth } from "../../common/api/services/UserService";
+import UpdateDisplayname from "./update-display-name/UpdateDisplayName";
 
 const Navbar = () => {
-  const { user } = useAuth();
+  const { user, updateDisplayName } = useAuth();
 
   return (
     <nav className={styles.container}>
@@ -16,6 +17,9 @@ const Navbar = () => {
         </Link>
       </div>
       <div className={styles.menu}>
+        {user && !user.displayName && (
+          <UpdateDisplayname updateDisplayName={updateDisplayName} />
+        )}
         <p>{user?.displayName || user?.email}</p>
         <Link to="/">All</Link>
         {user ? (

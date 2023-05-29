@@ -2,6 +2,7 @@ import * as React from "react";
 import styles from "./Login.module.scss";
 import controls from "../../assets/styles/controls.module.scss";
 import {
+  signInWithEmail,
   signInWithGithub,
   signInWithGoogle,
 } from "../../common/api/services/UserService";
@@ -9,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { UserCredential } from "firebase/auth";
 import LoginForm from "./components/form/LoginForm";
 import { ILogin } from "../../common/interfaces";
+import { toast } from "react-toastify";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
@@ -19,8 +21,16 @@ const Login: React.FC = () => {
     loginMethod().then(() => navigate("/"));
   };
 
-  const handleEmailLogin = (loginValues: ILogin) => {
-    console.log(loginValues);
+  const handleEmailLogin = async (loginValues: ILogin) => {
+    try {
+      await signInWithEmail(loginValues.email, loginValues.password).then(
+        () => {
+          navigate("/");
+        }
+      );
+    } catch (error) {
+      toast.error("Invalid email or password!");
+    }
   };
 
   const toggleEmailLogin = () => {
